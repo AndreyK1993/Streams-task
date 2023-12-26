@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Task03 {
+
     public static void main(String[] args) {
 
         List<Integer> temperatureData = generateTemperatureData();
@@ -29,10 +30,10 @@ public class Task03 {
     }
 
     private static void filterAndPrintTemperatures(List<Integer> temperatureData, AtomicInteger count) {
-        IntStream.range(0, temperatureData.size())
-                .filter(i -> temperatureData.get(i) >= 10 && temperatureData.get(i) <= 13)
-                .forEach(i ->
-                        System.out.println(count.incrementAndGet() + ") " + temperatureData.get(i) + "°C")
+        temperatureData.stream()
+                .filter(temperature -> temperature >= 10 && temperature <= 13)
+                .forEach(temperature ->
+                        System.out.println(count.incrementAndGet() + ") " + temperature + "°C")
                 );
     }
 }
